@@ -29,7 +29,7 @@ A collection of DSA problem solutions organized by topic, with detailed explanat
 ## Current Problems
 
 ### Arrays (1)
-- **[Product of Array Except Self](problems/arrays/product-except-self/)** - O(n) solution without division
+- **[Product of Array Except Self](problems/arrays/productexceptself/)** - O(n) solution without division
 
 ## Quick Start
 
@@ -45,7 +45,7 @@ mvn test
 
 ### Run Specific Problem
 ```bash
-cd problems/arrays/product-except-self/
+cd problems/arrays/productexceptself/
 javac *.java
 java ProductExceptSelfTest
 ```
@@ -53,10 +53,10 @@ java ProductExceptSelfTest
 ## Adding New Problems
 
 ### Using Templates
-1. **Copy templates** from `templates/` directory
-2. **Rename files** to match your problem (e.g., `TwoSum.java`, `TwoSumTest.java`)
-3. **Replace placeholders** with your problem details
-4. **Update main README** with new problem entry
+1. **Use the script**: `./scripts/new-problem.sh arrays twosum TwoSum`
+2. **Edit generated files** to implement your solution
+3. **Update README.md** with problem details
+4. **Add entry** to main README problems list
 
 ### Manual Setup
 Each problem should follow this structure:
@@ -68,9 +68,10 @@ problems/[topic]/[problem-name]/
 ```
 
 ### Naming Conventions
-- **Directories**: Use kebab-case (e.g., `two-sum`, `product-except-self`)
+- **Directories**: Use lowercase without hyphens (e.g., `twosum`, `productexceptself`)
 - **Java Classes**: Use PascalCase (e.g., `TwoSum`, `ProductExceptSelf`)
 - **Methods**: Use camelCase (e.g., `twoSum`, `productExceptSelf`)
+- **Packages**: Follow directory structure (e.g., `arrays.twosum`, `trees.binarysearch`)
 
 ### Problem README Requirements
 Each problem's README must include:

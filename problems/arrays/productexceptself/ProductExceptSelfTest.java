@@ -1,3 +1,5 @@
+package arrays.productexceptself;
+
 public class ProductExceptSelfTest {
     public static void main(String[] args) {
         ProductExceptSelf solution = new ProductExceptSelf();

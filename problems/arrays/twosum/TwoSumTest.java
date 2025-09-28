@@ -1,9 +1,11 @@
-package [TOPIC].[PROBLEM_PACKAGE];
+package arrays.twosum;
+
+import java.util.Arrays;
 
 /**
- * Test cases for [CLASS_NAME]
+ * Test cases for TwoSum
  */
-public class [CLASS_NAME]Test {
+public class TwoSumTest {
 
     // ANSI color codes for terminal output
     private static final String RESET = "\u001B[0m";
@@ -19,18 +21,18 @@ public class [CLASS_NAME]Test {
     private static int passCount = 0;
 
     public static void main(String[] args) {
-        [CLASS_NAME] solution = new [CLASS_NAME]();
+        TwoSum solution = new TwoSum();
 
-        printHeader("[PROBLEM_TITLE] Tests");
+        printHeader("Two Sum Problem Tests");
 
         // Test case 1: Basic example
-        testCase(solution, [INPUT_1], [EXPECTED_1], "Basic example");
+        testCase(solution, new int[]{2, 7, 11, 15}, 9, new int[]{0, 1}, "Basic example");
 
-        // Test case 2: Edge case
-        testCase(solution, [INPUT_2], [EXPECTED_2], "Edge case description");
+        // Test case 2: Multiple valid pairs
+        testCase(solution, new int[]{3, 2, 4}, 6, new int[]{1, 2}, "Multiple valid pairs");
 
-        // Test case 3: Another test case
-        testCase(solution, [INPUT_3], [EXPECTED_3], "Another test case description");
+        // Test case 3: Same number twice
+        testCase(solution, new int[]{3, 3}, 6, new int[]{0, 1}, "Same number twice");
 
         printSummary();
     }
@@ -66,20 +68,20 @@ public class [CLASS_NAME]Test {
     /**
      * Enhanced test case method with colorful output
      */
-    private static void testCase([CLASS_NAME] solution, [INPUT_TYPE] input, [EXPECTED_TYPE] expected, String description) {
+    private static void testCase(TwoSum solution, int[] nums, int target, int[] expected, String description) {
         testCount++;
 
         System.out.println(BOLD + PURPLE + "┌─ Test " + testCount + ": " + description + RESET);
 
         long startTime = System.nanoTime();
-        [RESULT_TYPE] result = solution.[METHOD_NAME](input);
+        int[] result = solution.twoSum(nums, target);
         long endTime = System.nanoTime();
 
         double executionTime = (endTime - startTime) / 1_000_000.0; // Convert to milliseconds
 
-        System.out.println(CYAN + "│  Input:    " + RESET + formatInput(input));
-        System.out.println(CYAN + "│  Expected: " + RESET + formatOutput(expected));
-        System.out.println(CYAN + "│  Actual:   " + RESET + formatOutput(result));
+        System.out.println(CYAN + "│  Input:    " + RESET + "nums=" + formatArray(nums) + ", target=" + YELLOW + target + RESET);
+        System.out.println(CYAN + "│  Expected: " + RESET + formatArray(expected));
+        System.out.println(CYAN + "│  Actual:   " + RESET + formatArray(result));
         System.out.printf(CYAN + "│  Time:     " + RESET + "%.3f ms%n", executionTime);
 
         boolean passed = isEqual(result, expected);
@@ -96,26 +98,28 @@ public class [CLASS_NAME]Test {
     }
 
     /**
-     * Format input for display
+     * Format array with nice brackets and spacing
      */
-    private static String formatInput([INPUT_TYPE] input) {
-        // TODO: Implement input formatting with colors
-        return YELLOW + input.toString() + RESET;
-    }
+    private static String formatArray(int[] arr) {
+        if (arr == null) return YELLOW + "null" + RESET;
+        if (arr.length == 0) return YELLOW + "[]" + RESET;
 
-    /**
-     * Format output for display
-     */
-    private static String formatOutput([OUTPUT_TYPE] output) {
-        // TODO: Implement output formatting with colors
-        return YELLOW + output.toString() + RESET;
+        StringBuilder sb = new StringBuilder();
+        sb.append(YELLOW).append("[").append(RESET);
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i > 0) sb.append(", ");
+            sb.append(BOLD).append(arr[i]).append(RESET);
+        }
+
+        sb.append(YELLOW).append("]").append(RESET);
+        return sb.toString();
     }
 
     /**
      * Check if two results are equal
      */
-    private static boolean isEqual([RESULT_TYPE] actual, [EXPECTED_TYPE] expected) {
-        // TODO: Implement equality check
-        return actual.equals(expected);
+    private static boolean isEqual(int[] actual, int[] expected) {
+        return Arrays.equals(actual, expected);
     }
 }

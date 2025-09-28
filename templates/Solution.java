@@ -1,3 +1,5 @@
+package [TOPIC].[PROBLEM_PACKAGE];
+
 /**
  * Problem: [PROBLEM_TITLE]
  *

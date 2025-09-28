@@ -1,3 +1,5 @@
+package arrays.productexceptself;
+
 public class ProductExceptSelf {
     public int[] productExceptSelf(int[] nums) {
         int n = nums.length;

@@ -3,7 +3,8 @@
 # Script to generate a new DSA problem from templates
 # Usage: ./scripts/new-problem.sh <topic> <problem-name> <ClassName>
 #
-# Example: ./scripts/new-problem.sh arrays two-sum TwoSum
+# Example: ./scripts/new-problem.sh arrays twosum TwoSum
+# Note: problem-name should be valid Java package name (no hyphens)
 
 set -e
 
@@ -48,10 +49,14 @@ echo "Generating files from templates..."
 # Solution file
 cp templates/Solution.java "${PROBLEM_DIR}/${CLASS_NAME}.java"
 sed -i '' "s/\[CLASS_NAME\]/${CLASS_NAME}/g" "${PROBLEM_DIR}/${CLASS_NAME}.java"
+sed -i '' "s/\[TOPIC\]/${TOPIC}/g" "${PROBLEM_DIR}/${CLASS_NAME}.java"
+sed -i '' "s/\[PROBLEM_PACKAGE\]/${PROBLEM_NAME}/g" "${PROBLEM_DIR}/${CLASS_NAME}.java"
 
 # Test file
 cp templates/SolutionTest.java "${PROBLEM_DIR}/${CLASS_NAME}Test.java"
 sed -i '' "s/\[CLASS_NAME\]/${CLASS_NAME}/g" "${PROBLEM_DIR}/${CLASS_NAME}Test.java"
+sed -i '' "s/\[TOPIC\]/${TOPIC}/g" "${PROBLEM_DIR}/${CLASS_NAME}Test.java"
+sed -i '' "s/\[PROBLEM_PACKAGE\]/${PROBLEM_NAME}/g" "${PROBLEM_DIR}/${CLASS_NAME}Test.java"
 
 # README file
 cp templates/README.md "${PROBLEM_DIR}/README.md"
